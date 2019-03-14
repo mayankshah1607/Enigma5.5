@@ -3,6 +3,11 @@
     color: #0f0;
 }
 
+.navbar-light .navbar-toggler-icon{
+    background-image: url('../../hamburger.svg');
+}
+
+
 .navbar-light .navbar-nav .nav-link,.navbar-light .navbar-nav .nav-link:hover,.navbar-light .navbar-nav .nav-link.active {
     color: #0f0;
 }
