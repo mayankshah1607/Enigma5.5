@@ -19,7 +19,8 @@ export default class Questions extends Component{
             useHint: this.props.UsedHints[this.props.CurQuestion-1],
             id: this.props.id,
             hint: '',
-            showHintModal :false
+            showHintModal :false,
+            hintText: 'Click for hint!!'
         }
     }
 
@@ -32,7 +33,7 @@ export default class Questions extends Component{
     }
 
     onGetHint = () => {
-
+        this.setState({hintText: 'Wait...'})
         fetch('http://localhost:8000/question/gethint',{
             method: 'post',
             headers: {'Content-type':'application/json'},
@@ -44,7 +45,8 @@ export default class Questions extends Component{
             })
             .then(response => response.json())
             .then(data => {
-                this.setState({useHint: true, hint: data.Hint, showHintModal : true})
+                this.setState({useHint: true, hint: data.Hint, showHintModal : true, hintText: 'Click for hint!!'})
+                
             })
 
     }
@@ -172,7 +174,7 @@ export default class Questions extends Component{
 
                         }
                         <Button onClick={this.onSubmit} id='submit-btn' variant='secondary'>{this.state.subTxt}</Button>
-                        <button onClick={this.onGetHint} id='hint-btn'>Click for hint!!</button>
+                        <button onClick={this.onGetHint} id='hint-btn'>{this.state.hintText}</button>
                         </div>
                     </Col>
                 </Row>

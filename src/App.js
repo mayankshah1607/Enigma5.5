@@ -35,7 +35,7 @@ class App extends Component {
         </Switch>
       </Router>
       <div onClick={this.onMute} id='sound-icon'>
-        <img id='sound-img' src={on}/>
+        <img alt='mute icon' id='sound-img' src={on}/>
       </div>
       </div>
     );

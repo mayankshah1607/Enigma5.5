@@ -36,7 +36,9 @@ export default class Login extends Component{
             UsedHints: '',
             autoLogin: false,
             invalidEmail: false,
-            invalidTeam: false
+            invalidTeam: false,
+            signUpErr: '',
+            captchaToken: ''
         }
     }
 
@@ -46,30 +48,8 @@ export default class Login extends Component{
        
     // specifying verify callback function
     verifyCallback = response => {
-        this.setState({RegBtnTxt: 'Please Wait...'})
-        fetch('http://localhost:8000/auth/signup',{
-            method: 'post',
-            headers: {'Content-type':'application/json'},
-            credentials: 'include',
-            body: JSON.stringify({
-                TeamName: this.state.TeamName,
-                Email: this.state.SignUpEmail,
-                Password: this.state.SignUpPass,
-                CaptchaToken: response
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.Status){
-                this.setState({RegBtnTxt: 'Register'})
-                alert('Successfully Registered. You may now login!');
-                this.setState({showSignup: false})
-            }
-            else{
-                alert(data.Message)
-            }
-        })
-      };
+        this.setState({captchaToken: response})
+    }
 
     openLoginModal = () => {
         this.setState({showLogin: true})
@@ -80,7 +60,9 @@ export default class Login extends Component{
     }
 
     openRegModal = () => {
-        this.setState({showSignup: true})
+        this.setState({showSignup: true}, () => {
+            executeCaptcha();
+        })
     }
 
     closeRegModal = () => {
@@ -88,11 +70,27 @@ export default class Login extends Component{
     }
 
     onEmailChange = (event) => {
-        this.setState({SignUpEmail: event.target.value})
+        var email_test = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+        this.setState({SignUpEmail: event.target.value},() => {
+            if (email_test.test(this.state.SignUpEmail) || this.state.SignUpEmail === ''){
+                this.setState({invalidEmail: false})
+            }
+            else{
+                this.setState({invalidEmail: true})
+            }
+        })
     }
 
     onTeamNameChange = (event) => {
-        this.setState({TeamName: event.target.value})
+        this.setState({TeamName: event.target.value}, () => {
+            var team_test = /^([a-zA-Z0-9 _-]+)$/
+            if (team_test.test(this.state.TeamName) || this.state.TeamName === ''){
+                this.setState({invalidTeam: false})
+            }
+            else{
+                this.setState({invalidTeam: true})
+            }
+        })
     }
 
     onPassChange = (event) => {
@@ -108,7 +106,36 @@ export default class Login extends Component{
     }
 
     onReg = () => {
-        executeCaptcha();
+        if (!this.state.invalidEmail && !this.state.invalidTeam && this.state.TeamName!=='' && this.state.SignUpEmail !== ''){
+            this.setState({RegBtnTxt: 'Please Wait...', signUpErr: ''})
+            fetch('http://localhost:8000/auth/signup',{
+                method: 'post',
+                headers: {'Content-type':'application/json'},
+                credentials: 'include',
+                body: JSON.stringify({
+                    TeamName: this.state.TeamName,
+                    Email: this.state.SignUpEmail,
+                    Password: this.state.SignUpPass,
+                    CaptchaToken: this.state.captchaToken
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.Status){
+                    this.setState({RegBtnTxt: 'Register'})
+                    alert('Successfully Registered. You may now login!');
+                    this.setState({showSignup: false})
+                }
+                else{
+                    alert(data.Message)
+                }
+                this.setState({RegBtnTxt: 'Register'})
+            })
+
+        }
+        else{
+            this.setState({signUpErr: 'Please check your details!'})
+        }
     }
 
     onLogin = () => {
@@ -240,6 +267,7 @@ export default class Login extends Component{
                             <Form.Group controlId="formBasicPassword">
                                 <Form.Control onChange={this.onPassChange} type="password" placeholder="Password" />
                             </Form.Group>
+                            <p style={{"textAlign":"center","fontSize":"14px","color":"#f00"}}>{this.state.signUpErr}</p>
                         </Form>
                         <Recaptcha
                         ref={e => recaptchaInstance = e}
