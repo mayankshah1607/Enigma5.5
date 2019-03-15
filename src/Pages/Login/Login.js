@@ -34,7 +34,9 @@ export default class Login extends Component{
             CurQuestion: 1,
             id: '',
             UsedHints: '',
-            autoLogin: false
+            autoLogin: false,
+            invalidEmail: false,
+            invalidTeam: false
         }
     }
 
@@ -176,7 +178,7 @@ export default class Login extends Component{
                                 "color":"#0f0",
                                 "paddingTop" : "42vh"
                             }}
-                        >Logging you in...</p>
+                        >Please wait...</p>
                         :
                         
                 <div>
@@ -184,7 +186,8 @@ export default class Login extends Component{
                         <Row>
                             <Col>
                             <div id='login-container'>
-                                <h1 style={{"color": "#0f0","marginBottom":"80px"}}>Enigma 5.5</h1>
+                                <h1 style={{"color": "#0f0","marginBottom":"34px"}}>Enigma 5.5</h1>
+                                <p className='blinking'>Select an option</p>
                                 <Button onClick = {this.openLoginModal}>Play now</Button>
                                 <Button onClick= {this.openRegModal}>Sign up</Button>
                                 <Button>Rules</Button>
@@ -228,10 +231,10 @@ export default class Login extends Component{
                         <Modal.Body>
                         <Form>
                             <Form.Group>
-                                <Form.Control onChange={this.onTeamNameChange} type="text" placeholder="Team Name" />
+                                <Form.Control isInvalid={this.state.invalidTeam} onChange={this.onTeamNameChange} type="text" placeholder="Team Name" />
                             </Form.Group>
                             <Form.Group>
-                                <Form.Control onChange={this.onEmailChange} type="email" placeholder="Email Address" />
+                                <Form.Control isInvalid={this.state.invalidEmail} onChange={this.onEmailChange} type="email" placeholder="Email Address" />
                             </Form.Group>
 
                             <Form.Group controlId="formBasicPassword">

@@ -9,6 +9,18 @@
     padding-bottom: 32px;
 }
 
+#back-btn{
+    color: #00f;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 12px;
+}
+
+#back-btn a{
+    text-decoration: none;
+}
+
 th{
     color: #0f0;
 }

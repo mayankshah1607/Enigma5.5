@@ -24,9 +24,9 @@ export default class nav extends Component{
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ml-auto">
-                    <Nav.Link href="#home">Leaderboard</Nav.Link>
+                    <Nav.Link href="/leaderboard">Leaderboard</Nav.Link>
                     <NavDropdown title={"Hi, "+this.props.TeamName} id="basic-nav-dropdown">
-                        <NavDropdown.Item href="#action/3.1">Points: {this.props.Points}</NavDropdown.Item>
+                        <NavDropdown.Item>Points: {this.props.Points}</NavDropdown.Item>
                         <NavDropdown.Item onClick={this.onLogOut}>Log Out</NavDropdown.Item>
                     </NavDropdown>
                     </Nav>

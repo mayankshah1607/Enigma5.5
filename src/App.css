@@ -19,6 +19,21 @@
   color: white;
 }
 
+#sound-icon{
+  position: absolute;
+  bottom: 0;
+  margin: 14px;
+  z-index: 1000;
+}
+
+#sound-icon:hover{
+  cursor: pointer;
+}
+
+#sound-icon img{
+  width: 24px;
+}
+
 .App-link {
   color: #61dafb;
 }

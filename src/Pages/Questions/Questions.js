@@ -154,7 +154,7 @@ export default class Questions extends Component{
                             <InputGroup.Prepend>
                             <InputGroup.Text>></InputGroup.Text>
                             </InputGroup.Prepend>
-                            <FormControl onChange={this.onAnsChange} placeholder="Enter your answer here" aria-label="Amount (to the nearest dollar)" />
+                            <FormControl onChange={this.onAnsChange} placeholder="Enter your answer" aria-label="Amount (to the nearest dollar)" />
                             <InputGroup.Append>
                             <InputGroup.Text>{'<'}</InputGroup.Text>
                             </InputGroup.Append>
