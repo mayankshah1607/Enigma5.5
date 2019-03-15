@@ -5,7 +5,17 @@ import './Nav.css';
 export default class nav extends Component{
 
     onLogOut = () =>{
-        console.log('Logged out')
+        fetch('http://localhost:8000/auth/logout',{
+            method: 'get',
+            headers: {'Content-type':'application/json'},
+            credentials: 'include'
+        })
+        .then(response=>response.json())
+        .then(data => {
+            if (data.Message === 'Logged out.'){
+                window.location.reload()
+            }
+        })
     }
 
     render(){

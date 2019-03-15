@@ -1,0 +1,18 @@
+#leaderboard{
+    background-color: black;
+    min-height: 100vh;
+}
+
+#leaderboard h3 {
+    color: #0f0;
+    padding-top: 72px;
+    padding-bottom: 32px;
+}
+
+th{
+    color: #0f0;
+}
+
+td{
+    color: #36c;
+}

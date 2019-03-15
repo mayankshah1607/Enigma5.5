@@ -46,6 +46,6 @@
 @media (min-width: 992px) {     
     .dropdown-menu{
     
-        margin-left: 14px;
+        margin-left: -25px;
     }
 }

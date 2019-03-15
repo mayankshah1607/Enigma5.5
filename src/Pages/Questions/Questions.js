@@ -66,7 +66,7 @@ export default class Questions extends Component{
             .then(response => response.json())
             .then(data => {
                 if (data.Status){
-                    if (data.Message == 'Correct'){
+                    if (data.Message === 'Correct'){
                         console.log(data)
                         this.setState({
                             showModal: true, 
@@ -140,7 +140,7 @@ export default class Questions extends Component{
                 this.state.loading ?
                 <p style={{
                     "color":"#0f0",
-                    "marginTop" : "40vh"
+                    "paddingTop" : "33.5vh"
                 }}>Loading...</p>
                 : 
             
