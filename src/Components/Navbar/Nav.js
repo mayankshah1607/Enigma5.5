@@ -4,6 +4,10 @@ import './Nav.css';
 
 export default class nav extends Component{
 
+    onLogOut = () =>{
+        console.log('Logged out')
+    }
+
     render(){
         return(
             <Navbar bg="dark" expand="lg">
@@ -13,7 +17,7 @@ export default class nav extends Component{
                     <Nav.Link href="#home">Leaderboard</Nav.Link>
                     <NavDropdown title={"Hi, "+this.props.TeamName} id="basic-nav-dropdown">
                         <NavDropdown.Item href="#action/3.1">Points: {this.props.Points}</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.2">Log Out</NavDropdown.Item>
+                        <NavDropdown.Item onClick={this.onLogOut}>Log Out</NavDropdown.Item>
                     </NavDropdown>
                     </Nav>
                 </Navbar.Collapse>

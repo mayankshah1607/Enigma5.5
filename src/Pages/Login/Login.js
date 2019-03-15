@@ -20,7 +20,9 @@ export default class Login extends Component{
             showQuestions: false,
             AuthTeamName: '',
             Points: 0,
-            CurQuestion: 1
+            CurQuestion: 1,
+            id: '',
+            UsedHints: ''
         }
     }
 
@@ -96,7 +98,7 @@ export default class Login extends Component{
         .then(response => response.json())
         .then(data => {
             if (data.Status){
-                this.setState({showLogin: false, showQuestions: true,AuthTeamName: data.Data.TeamName,Points: data.Data.Points,CurQuestion: data.Data.CurQuestion})
+                this.setState({showLogin: false, showQuestions: true,AuthTeamName: data.Data.TeamName,Points: data.Data.Points,CurQuestion: data.Data.CurQuestion, id: data.Data._id,UsedHints: data.Data.UsedHints})
             }
             else{
                 this.setState({LoginErr: data.Message})
@@ -109,7 +111,7 @@ export default class Login extends Component{
         return(
 
             this.state.showQuestions ? 
-            <Questions TeamName={this.state.AuthTeamName} Points={this.state.Points} CurQuestion={this.state.CurQuestion}/>
+            <Questions UsedHints={this.state.UsedHints} id={this.state.id} TeamName={this.state.AuthTeamName} Points={this.state.Points} CurQuestion={this.state.CurQuestion}/>
             :
             <div id='login'>
                 <Container>
