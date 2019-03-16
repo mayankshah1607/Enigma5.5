@@ -34,7 +34,7 @@ export default class Questions extends Component{
 
     onGetHint = () => {
         this.setState({hintText: 'Wait...'})
-        fetch('http://localhost:8000/question/gethint',{
+        fetch('https://enigma55-api.herokuapp.com/question/gethint',{
             method: 'post',
             headers: {'Content-type':'application/json'},
             credentials: 'include',
@@ -53,7 +53,7 @@ export default class Questions extends Component{
 
     onSubmit = () => {
         this.setState({subTxt: 'Checking...'})
-        fetch('http://localhost:8000/question/check',{
+        fetch('https://enigma55-api.herokuapp.com/question/check',{
             method: 'post',
             headers: {'Content-type':'application/json'},
             credentials: 'include',
@@ -87,7 +87,7 @@ export default class Questions extends Component{
 
     showNext = () => {
         this.setState({showModal: false, loading: true})
-        fetch('http://localhost:8000/question/getquestion',{
+        fetch('https://enigma55-api.herokuapp.com/question/getquestion',{
             method: 'post',
             headers: {'Content-type':'application/json'},
             credentials: 'include',
@@ -112,7 +112,7 @@ export default class Questions extends Component{
     }
 
     componentWillMount(){
-        fetch('http://localhost:8000/question/getquestion',{
+        fetch('https://enigma55-api.herokuapp.com/question/getquestion',{
             method: 'post',
             headers: {'Content-type':'application/json'},
             credentials: 'include',

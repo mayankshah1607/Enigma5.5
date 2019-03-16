@@ -5,7 +5,7 @@ import './Nav.css';
 export default class nav extends Component{
 
     onLogOut = () =>{
-        fetch('http://localhost:8000/auth/logout',{
+        fetch('https://enigma55-api.herokuapp.com/auth/logout',{
             method: 'get',
             headers: {'Content-type':'application/json'},
             credentials: 'include'

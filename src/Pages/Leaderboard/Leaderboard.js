@@ -16,7 +16,7 @@ export default class Leaderboard extends Component{
             window.location.href = '/'
         }
         else{
-            fetch('http://localhost:8000/question/leaderboard',{
+            fetch('https://enigma55-api.herokuapp.com/question/leaderboard',{
                 method: 'get',
                 headers: {'Content-type':'application/json'},
                 credentials: 'include'
