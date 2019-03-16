@@ -164,6 +164,8 @@ export default class Login extends Component{
                 this.setState({showLogin: false, showQuestions: true,AuthTeamName: data.Data.TeamName,Points: data.Data.Points,CurQuestion: data.Data.CurQuestion, id: data.Data._id,UsedHints: data.Data.UsedHints})
                 cookie.save('enigma',{
                     token: data.token
+                },{
+                    maxAge: 900000
                 })
             }
             else{
