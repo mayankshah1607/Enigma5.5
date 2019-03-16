@@ -103,6 +103,10 @@
     color: #090;
 }
 
+.rule{
+    color: #f4ff00;
+}
+
 .form-control::placeholder{
     color: #090;
 }

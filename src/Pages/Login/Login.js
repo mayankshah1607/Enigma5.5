@@ -38,7 +38,8 @@ export default class Login extends Component{
             invalidEmail: false,
             invalidTeam: false,
             signUpErr: '',
-            captchaToken: ''
+            captchaToken: '',
+            showRules: false
         }
     }
 
@@ -46,6 +47,13 @@ export default class Login extends Component{
         console.log('Captcha loaded!');
       };
        
+    openRules = () => {
+        this.setState({showRules: true})
+    }  
+
+    closeRules = () => {
+        this.setState({showRules: false})
+    }
     // specifying verify callback function
     verifyCallback = response => {
         this.setState({captchaToken: response})
@@ -222,7 +230,7 @@ export default class Login extends Component{
                                 <p className='blinking'>Select an option</p>
                                 <Button onClick = {this.openLoginModal}>Play now</Button>
                                 <Button onClick= {this.openRegModal}>Sign up</Button>
-                                <Button>Rules</Button>
+                                <Button onClick = {this.openRules}>Rules</Button>
                             </div>
                             </Col>
                         </Row>
@@ -252,6 +260,25 @@ export default class Login extends Component{
                             <Button id='login-btn' variant="primary" onClick={this.onLogin}>
                             {this.state.LogBtnTxt}
                             </Button>
+                        </Modal.Footer>
+                    </Modal>
+
+                    <Modal id='rules-modal' show={this.state.showRules} onHide={this.closeRules}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>Rules</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <p className='rule'>1. For every correct answer, you will be rewarded 15 points.</p>
+                            <p className='rule'>2. The first 5 players to solve a question will be awarded 20 points.</p>
+                            <p className='rule'>3. Using a deducts 5 points.</p>
+
+                            
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="secondary" onClick={this.closeRules}>
+                            Close
+                            </Button>
+
                         </Modal.Footer>
                     </Modal>
 
