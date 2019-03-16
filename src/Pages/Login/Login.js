@@ -108,7 +108,7 @@ export default class Login extends Component{
     onReg = () => {
         if (!this.state.invalidEmail && !this.state.invalidTeam && this.state.TeamName!=='' && this.state.SignUpEmail !== ''){
             this.setState({RegBtnTxt: 'Please Wait...', signUpErr: ''})
-            fetch('https://enigma55-api.herokuapp.com/auth/signup',{
+            fetch('http://enigma55-api.herokuapp.com/auth/signup',{
                 method: 'post',
                 headers: {'Content-type':'application/json'},
                 credentials: 'include',
@@ -140,7 +140,7 @@ export default class Login extends Component{
 
     onLogin = () => {
         this.setState({LogBtnTxt: 'Please Wait...'})
-        fetch('https://enigma55-api.herokuapp.com/auth/login',{
+        fetch('http://enigma55-api.herokuapp.com/auth/login',{
             method: 'post',
             headers: {'Content-type':'application/json'},
             credentials: 'include',
@@ -163,9 +163,9 @@ export default class Login extends Component{
     }
 
     componentWillMount(){
-        if (cookie.load('enigma_user') !== undefined){
+        if (cookie.load('enigma') !== undefined){
             this.setState({autoLogin: true})
-            fetch('https://enigma55-api.herokuapp.com/auth/login',{
+            fetch('http://enigma55-api.herokuapp.com/auth/login',{
                 method: 'post',
                 headers: {'Content-type':'application/json'},
                 credentials: 'include',

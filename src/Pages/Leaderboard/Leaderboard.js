@@ -12,8 +12,9 @@ export default class Leaderboard extends Component{
         }
     }
     componentWillMount(){
-        if (cookie.load('enigma_user') === undefined){
-            window.location.href = '/'
+        if (cookie.load('enigma') === undefined){
+            console.log(cookie.load('enigma_user'))
+            // window.location.href = '/'
         }
         else{
             fetch('https://enigma55-api.herokuapp.com/question/leaderboard',{
