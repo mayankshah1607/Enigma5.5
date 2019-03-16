@@ -26,6 +26,10 @@ class App extends Component {
     })
   }
 
+  componentDidMount(){
+    document.getElementById('music').play();
+  }
+
   render() {
     return (
       <div className="App">
