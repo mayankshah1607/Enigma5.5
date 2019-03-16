@@ -272,7 +272,7 @@ export default class Login extends Component{
                         <Modal.Body>
                             <p className='rule'>1. For every correct answer, you will be rewarded 15 points.</p>
                             <p className='rule'>2. The first 5 players to solve a question will be awarded 20 points.</p>
-                            <p className='rule'>3. Using a deducts 5 points.</p>
+                            <p className='rule'>3. Using a hint deducts 5 points.</p>
 
                             
                         </Modal.Body>
