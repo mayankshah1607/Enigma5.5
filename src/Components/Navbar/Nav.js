@@ -1,21 +1,13 @@
 import React, { Component } from 'react';
 import {Navbar,NavDropdown,Nav} from 'react-bootstrap';
 import './Nav.css';
+import cookie from 'react-cookies';
 
 export default class nav extends Component{
 
     onLogOut = () =>{
-        fetch('https://enigma55-api.herokuapp.com/auth/logout',{
-            method: 'get',
-            headers: {'Content-type':'application/json'},
-            credentials: 'include'
-        })
-        .then(response=>response.json())
-        .then(data => {
-            if (data.Message === 'Logged out.'){
-                window.location.reload()
-            }
-        })
+        cookie.remove('enigma');
+        window.location.reload();
     }
 
     render(){
