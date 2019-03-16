@@ -13,18 +13,18 @@ class App extends Component {
       sound : true
     }
   }
-  onMute = () => {
-    this.setState({sound: !this.state.sound}, () => {
-      if (this.state.sound) {
-        document.getElementById("sound-img").src = on;
-        document.getElementById("music").muted = false;
-      }
-      else{
-        document.getElementById("sound-img").src = off;
-        document.getElementById("music").muted = true;
-      }
-    })
-  }
+  // onMute = () => {
+  //   this.setState({sound: !this.state.sound}, () => {
+  //     if (this.state.sound) {
+  //       document.getElementById("sound-img").src = on;
+  //       document.getElementById("music").muted = false;
+  //     }
+  //     else{
+  //       document.getElementById("sound-img").src = off;
+  //       document.getElementById("music").muted = true;
+  //     }
+  //   })
+  // }
 
 
 
@@ -38,9 +38,6 @@ class App extends Component {
           <Route path='/leaderboard' component={Leaderboard}/>
         </Switch>
       </Router>
-      <div onClick={this.onMute} id='sound-icon'>
-        <img alt='mute icon' id='sound-img' src={on}/>
-      </div>
       </div>
     );
   }
