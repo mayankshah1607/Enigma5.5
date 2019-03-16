@@ -154,6 +154,9 @@ export default class Login extends Component{
         .then(data => {
             if (data.Status){
                 this.setState({showLogin: false, showQuestions: true,AuthTeamName: data.Data.TeamName,Points: data.Data.Points,CurQuestion: data.Data.CurQuestion, id: data.Data._id,UsedHints: data.Data.UsedHints})
+                cookie.save('enigma',{
+                    token: data.token
+                })
             }
             else{
                 this.setState({LoginErr: data.Message})
@@ -163,6 +166,7 @@ export default class Login extends Component{
     }
 
     componentWillMount(){
+
         if (cookie.load('enigma') !== undefined){
             this.setState({autoLogin: true})
             fetch('http://enigma55-api.herokuapp.com/auth/login',{
@@ -170,7 +174,8 @@ export default class Login extends Component{
                 headers: {'Content-type':'application/json'},
                 credentials: 'include',
                 body: JSON.stringify({
-                    auto: 1
+                    auto: 1,
+                    token: cookie.load('enigma').token
                 })
             })
             .then(response => response.json())

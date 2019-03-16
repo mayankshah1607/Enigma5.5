@@ -31,11 +31,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <audio id='music' controls autoPlay style={{
-          "display" : "none"
-        }}>
-          <source src='music.mp3' type='audio/mp3'/>
-        </audio>
+
       <Router>
         <Switch>
           <Route exact path='/' component={Login}/>
