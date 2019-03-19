@@ -148,7 +148,7 @@ export default class Login extends Component{
 
     onLogin = () => {
         this.setState({LogBtnTxt: 'Please Wait...'})
-        fetch('http://enigma55-api.herokuapp.com/auth/login',{
+        fetch('http://localhost:8000/auth/login',{
             method: 'post',
             headers: {'Content-type':'application/json'},
             credentials: 'include',
@@ -179,7 +179,7 @@ export default class Login extends Component{
 
         if (cookie.load('enigma') !== undefined){
             this.setState({autoLogin: true})
-            fetch('http://enigma55-api.herokuapp.com/auth/login',{
+            fetch('http://localhost:8000/auth/login',{
                 method: 'post',
                 headers: {'Content-type':'application/json'},
                 credentials: 'include',
@@ -194,7 +194,7 @@ export default class Login extends Component{
                     this.setState({showLogin: false, showQuestions: true,AuthTeamName: data.Data.TeamName,Points: data.Data.Points,CurQuestion: data.Data.CurQuestion, id: data.Data._id,UsedHints: data.Data.UsedHints})
                 }
                 else{
-                    console.log('Cookie expired')
+                    console.log(data)
                 }
                 this.setState({LogBtnTxt: 'Log In',autoLogin: false})
             })
